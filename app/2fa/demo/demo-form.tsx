@@ -1,26 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Session } from "next-auth"
 import Image from "next/image"
-import {
-  Check,
-  CircleAlert,
-  LoaderPinwheel,
-  QrCode,
-  TriangleAlert,
-} from "lucide-react"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { LoaderPinwheel, QrCode, TriangleAlert } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/components/ui/use-toast"
 import { generateQr, verifyToken } from "@/actions/twoFaAction"
 import { Separator } from "@/components/ui/separator"
 import { useDebouncedCallback } from "use-debounce"
@@ -34,13 +18,12 @@ type qrCode = {
   }
 }
 
-export default function TwoFaDemo({ session }: { session: Session }) {
+export default function TwoFaDemo() {
   const [qrCode, setQrCode] = useState<qrCode>()
   const [loading, setLoading] = useState<boolean>()
   const [isTokenValid, setIsTokenValid] = useState<boolean>()
 
   const handelGenerateQr = async () => {
-    // setQrCode()
     setLoading(true)
     const result = await generateQr()
     setQrCode(result)

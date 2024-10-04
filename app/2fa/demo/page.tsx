@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import DataForm from "./data-form"
+import DataForm from "./demo-form"
 import { auth } from "@/auth"
 import { Separator } from "@/components/ui/separator"
 
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 
 export default async function Demo() {
   const session = await auth()
+
   return (
     <DashboardLayout>
       <main className="flex flex-col gap-5 justify-center content-center p-5">
@@ -29,7 +30,7 @@ export default async function Demo() {
             <CardDescription>Two Factor Authentication</CardDescription>
           </CardHeader>
           <CardContent>
-            <DataForm session={session} />
+            <DataForm />
           </CardContent>
           <CardFooter></CardFooter>
         </Card>
