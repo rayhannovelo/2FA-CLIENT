@@ -19,6 +19,7 @@
 # misc
 .vscode
 .DS_Store
+.nvmrc
 *.pem
 
 # debug

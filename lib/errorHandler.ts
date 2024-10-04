@@ -4,7 +4,7 @@ export function axiosErrorHandler(error: unknown) {
   const response = { success: false, message: "" }
   if (axios.isAxiosError(error)) {
     if (error.response) {
-      return error.response.data
+      response.message = error.response.data.message
     } else if (error.request) {
       response.message = "No response received from server."
     } else {

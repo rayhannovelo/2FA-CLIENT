@@ -34,7 +34,8 @@ export default function SideNav({ session }: { session: Session | null }) {
               href={link.href}
               className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                 link.href
-                  ? `/${paths[1]}` === link.href
+                  ? `/${paths[1]}` === link.href ||
+                    `/${paths[1]}/${paths[2]}` === link.href
                     ? "text-primary font-normal bg-muted"
                     : "text-muted-foreground hover:text-primary hover:bg-muted"
                   : "text-primary font-bold"

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
-import { getPosts } from "@/actions/postsAction"
+// import { getPosts } from "@/actions/twoFaAction"
 import { columns } from "./columns"
 import { DataTable } from "./data-table"
 
@@ -21,18 +21,18 @@ export const metadata: Metadata = {
 }
 
 export default async function Posts() {
-  const data = await getPosts()
+  // const data = await getPosts()
 
   return (
     <DashboardLayout>
       <main className="flex flex-col gap-5 justify-center content-center p-5">
         <Card className="w-full">
           <CardHeader>
-            <CardTitle>Posts</CardTitle>
-            <CardDescription>Posts Management</CardDescription>
+            <CardTitle>2FA</CardTitle>
+            <CardDescription>2FA Management</CardDescription>
           </CardHeader>
           <CardContent>
-            {!data.success && (
+            {/* {!data.success && (
               <Alert variant="destructive" className="mb-5">
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Error Fetching Data</AlertTitle>
@@ -44,7 +44,7 @@ export default async function Posts() {
                 <Plus className="w-4 h-4 mr-1" /> Create
               </Button>
             </Link>
-            <DataTable columns={columns} data={data.data ?? []} />
+            <DataTable columns={columns} data={data.data ?? []} /> */}
           </CardContent>
           <CardFooter></CardFooter>
         </Card>
