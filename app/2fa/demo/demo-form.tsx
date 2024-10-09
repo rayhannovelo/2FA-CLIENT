@@ -3,12 +3,18 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { LoaderPinwheel, QrCode, TriangleAlert } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { generateQr, verifyToken } from "@/actions/twoFaAction"
-import { Separator } from "@/components/ui/separator"
 import { useDebouncedCallback } from "use-debounce"
 import { authenticator } from "otplib"
+import { generateQr, verifyToken } from "@/actions/twoFaAction"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
 
 type qrCode = {
   success: boolean
@@ -70,19 +76,30 @@ export default function TwoFaDemo() {
             <Image
               src={qrCode.data.qrCode || ""}
               alt="2FA QrCode"
-              width={250}
-              height={250}
+              width={225}
+              height={225}
               unoptimized
               className="border"
             />
-            <p className="text-muted-foreground">({timeRemaining} s)</p>
             <p>Scan this QR Code image with PPI 2FA Authenticator</p>
             <Separator />
-            <Input
-              type="text"
-              placeholder="Input Token"
-              onChange={(e) => handleVerifyToken(e.target.value)}
-            />
+            <p>
+              Input Token{" "}
+              <span className="text-muted-foreground">({timeRemaining}s)</span>
+            </p>
+            <InputOTP
+              maxLength={6}
+              onChange={(value) => handleVerifyToken(value)}
+            >
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
             {isTokenValid != null &&
               (isTokenValid ? (
                 <p className="text-green-600">Token is valid</p>
