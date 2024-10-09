@@ -37,7 +37,7 @@ export default function TwoFaDemo() {
         setIsTokenValid(result.data.isValid)
       }
     }
-  }, 100)
+  }, 300)
 
   useEffect(() => {}, [])
 
