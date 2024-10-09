@@ -29,7 +29,7 @@ export default async function Demo() {
             <CardTitle>{session?.user.name} 2FA DEMO</CardTitle>
             <CardDescription>Two Factor Authentication</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="py-0">
             <DataForm />
           </CardContent>
           <CardFooter></CardFooter>

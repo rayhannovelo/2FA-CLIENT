@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { generateQr, verifyToken } from "@/actions/twoFaAction"
 import { Separator } from "@/components/ui/separator"
 import { useDebouncedCallback } from "use-debounce"
+import { authenticator } from "otplib"
 
 type qrCode = {
   success: boolean
@@ -22,6 +23,9 @@ export default function TwoFaDemo() {
   const [qrCode, setQrCode] = useState<qrCode>()
   const [loading, setLoading] = useState<boolean>()
   const [isTokenValid, setIsTokenValid] = useState<boolean>()
+  const [timeRemaining, setTimeRemaining] = useState<number>(
+    authenticator.timeRemaining()
+  )
 
   const handelGenerateQr = async () => {
     setLoading(true)
@@ -39,10 +43,16 @@ export default function TwoFaDemo() {
     }
   }, 300)
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeRemaining(authenticator.timeRemaining())
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4">
+    <div className="flex flex-col justify-center items-center gap-3">
       <Separator />
       <Button variant="default" onClick={handelGenerateQr}>
         <QrCode className="mr-2" /> Generate 2FA QR Code
@@ -63,7 +73,9 @@ export default function TwoFaDemo() {
               width={250}
               height={250}
               unoptimized
+              className="border"
             />
+            <p className="text-muted-foreground">({timeRemaining} s)</p>
             <p>Scan this QR Code image with PPI 2FA Authenticator</p>
             <Separator />
             <Input
