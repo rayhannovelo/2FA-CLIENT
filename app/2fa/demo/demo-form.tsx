@@ -28,13 +28,14 @@ type qrCode = {
 export default function TwoFaDemo() {
   const [qrCode, setQrCode] = useState<qrCode>()
   const [loading, setLoading] = useState<boolean>()
-  const [isTokenValid, setIsTokenValid] = useState<boolean>()
+  const [isTokenValid, setIsTokenValid] = useState<boolean | null>(null)
   const [timeRemaining, setTimeRemaining] = useState<number>(
     authenticator.timeRemaining()
   )
 
   const handleGenerateQr = async () => {
     setLoading(true)
+    setIsTokenValid(null)
     const result = await generateQr()
     setQrCode(result)
     setLoading(false)
