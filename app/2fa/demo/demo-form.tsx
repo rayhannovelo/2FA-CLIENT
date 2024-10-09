@@ -33,7 +33,7 @@ export default function TwoFaDemo() {
     authenticator.timeRemaining()
   )
 
-  const handelGenerateQr = async () => {
+  const handleGenerateQr = async () => {
     setLoading(true)
     const result = await generateQr()
     setQrCode(result)
@@ -51,7 +51,12 @@ export default function TwoFaDemo() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeRemaining(authenticator.timeRemaining())
+      const timeLeft = authenticator.timeRemaining()
+      setTimeRemaining(timeLeft)
+
+      if (timeLeft == 30) {
+        handleGenerateQr()
+      }
     }, 1000)
 
     return () => clearInterval(interval)
@@ -60,14 +65,14 @@ export default function TwoFaDemo() {
   return (
     <div className="flex flex-col justify-center items-center gap-3">
       <Separator />
-      <Button variant="default" onClick={handelGenerateQr}>
+      <Button variant="default" onClick={handleGenerateQr}>
         <QrCode className="mr-2" /> Generate 2FA QR Code
       </Button>
 
       {loading ? (
         <>
-          <LoaderPinwheel className="animate-spin size-[150px] my-[50px]" />
-          <p>Generating QrCode...</p>
+          <LoaderPinwheel className="animate-spin size-[150px] my-[37.5px]" />
+          <p>Generating 2FA QrCode...</p>
         </>
       ) : (
         qrCode &&
