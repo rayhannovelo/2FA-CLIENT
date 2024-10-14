@@ -87,7 +87,7 @@ export default function TwoFaDemo() {
               unoptimized
               className="border"
             />
-            <p>Scan this QR Code image with PPI 2FA Authenticator</p>
+            <p>Scan this QR Code image with 2FA PPI Authenticator</p>
             <Separator />
             <p>
               Input Token{" "}
