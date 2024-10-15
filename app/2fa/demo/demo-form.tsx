@@ -56,7 +56,7 @@ export default function TwoFaDemo() {
       setTimeRemaining(timeLeft)
 
       if (timeLeft == 30) {
-        handleGenerateQr()
+        // handleGenerateQr()
       }
     }, 1000)
 
