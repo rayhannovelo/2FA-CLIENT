@@ -148,7 +148,7 @@ export default function Page({
         </CardContent>
         <CardFooter className="flex-col">
           <p>
-            © 2024 Powered By
+            © 2024 Powered By{" "}
             <span className="font-semibold">
               {process.env.NEXT_PUBLIC_APP_NAME}
             </span>
