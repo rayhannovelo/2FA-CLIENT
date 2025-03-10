@@ -8,7 +8,7 @@ This project is a full-stack web application built with Next.js 14 and Shadcn/UI
 - **CRUD Operations:** Basic create, read, update, and delete actions for managing data.
 - **Theming:** Customizable light and dark modes using Shadcn/UI components.
 - **API Integration:** Connects to a separate backend built with Adonis.js 6.  
-  Backend Repository: [AdonisJS-6-REST-API](https://github.com/rayhannovelo/AdonisJS-6-REST-API).
+  Backend Repository: [2FA-API](https://github.com/rayhannovelo/2FA-API).
 
 ## Tech Stack
 
